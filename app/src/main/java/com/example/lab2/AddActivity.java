@@ -71,6 +71,7 @@ public class AddActivity extends AppCompatActivity {
                 writeToXml();
                 Toast.makeText(this, "Reminder added", Toast.LENGTH_SHORT).show();
 
+                correctTime();
                 String stringDate = storeDate + " " + time;
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
                 LocalDateTime dateNotif = LocalDateTime.parse(stringDate, formatter);
@@ -90,6 +91,17 @@ public class AddActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void correctTime() {
+        String[] timeArray = time.split(":");
+        if(timeArray[0].length() == 1) {
+            timeArray[0] = "0" + timeArray[0];
+        }
+        if(timeArray[1].length() == 1) {
+            timeArray[1] = "0" + timeArray[1];
+        }
+        time = timeArray[0] + ":" + timeArray[1];
     }
 
     private void writeToXml() throws IOException {

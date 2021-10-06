@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -80,6 +81,11 @@ public class PlannerAdapter extends RecyclerView.Adapter<PlannerAdapter.PlannerV
             }
             plannerList.remove(position - 1);
             XMLOperator.writeXml(itemView.getContext(), plannerList);
+            Intent intent = new Intent(itemView.getContext(), MainActivity.class)
+                    .setFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT |
+                            Intent.FLAG_ACTIVITY_NEW_TASK |
+                            Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            itemView.getContext().startActivity(intent);
         }
 
         private void edit() {
